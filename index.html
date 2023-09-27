@@ -33,8 +33,6 @@
                     divs.push({element: div, base_idx});
                     container.appendChild(div);
 
-                    
-
                     div.addEventListener('click', (e) => {
                         const candidate = divs.find(({element}) => element.innerText === e.target.textContent)
                         const current_idx = divs.indexOf(candidate);
