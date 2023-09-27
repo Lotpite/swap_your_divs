@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Swap your divs</title>
+        <style>
+          .custom {
+              height: 100px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              cursor: pointer;
+          }
+      </style>
+    </head>
+    <body>
+        <script>
+            const container = document.body;
+
+            function createSwapDivs(quantity) {
+                const divs = [];
+                const swap_diws = []
+                const clicked_divs = [];
+
+                for (let i = 0; i < quantity; i++) {
+                    const div = document.createElement('div');
+                    div.textContent = `Div ${i + 1}`;
+                    div.classList.add('custom')
+                    let clicked = false;
+                    const base_idx = i; 
+                    divs.push({element: div, base_idx});
+                    container.appendChild(div);
+
+                    
+
+                    div.addEventListener('click', (e) => {
+                        const candidate = divs.find(({element}) => element.innerText === e.target.textContent)
+                        const current_idx = divs.indexOf(candidate);
+
+                        if (clicked === false) {
+                            divs.splice(current_idx, 1)[0] 
+                            swap_diws.unshift({ element: div, base_idx }) 
+                            clicked = true;
+                        } else {
+                            divs.splice(current_idx, 1)[0] 
+                            divs.splice(base_idx, 0, {element: div, base_idx})[0]
+                            clicked = false;
+                        }
+
+                        container.innerHTML = '';
+                        swap_diws.forEach(({element}) => container.appendChild(element))
+                        divs.sort((a,b) => a.base_idx - b.base_idx)
+                        divs.forEach(({element}) => container.appendChild(element));
+                    });
+                }
+            }
+
+            createSwapDivs(100)
+        </script>
+    </body>
+</html>
