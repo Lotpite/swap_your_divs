@@ -35,12 +35,12 @@
                         const current_idx = divs.indexOf(div)
                         console.log(current_idx)
                         if (clicked === false) {
-                            divs.splice(current_idx, 1)[0] 
+                            divs.splice(current_idx, 1)
                             divs.unshift(div) 
                             clicked = true;
                         } else {
-                            divs.splice(current_idx, 1)[0] 
-                            divs.splice(base_idx, 0, div)[0]
+                            divs.splice(current_idx, 1)
+                            divs.splice(base_idx, 0, div)
                             clicked = false;
                         }
 
